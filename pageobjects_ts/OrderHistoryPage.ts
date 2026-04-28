@@ -27,10 +27,15 @@ export class OrderHistoryPage {
         }
     }
 
-    async getOrderIdDetailsPage(): Promise<string> {
-        // Wait for the element to be visible before getting text
-        await this.page.locator(".col-text").waitFor({ state: 'visible', timeout: 10000 });
-        const orderId = await this.page.locator(".col-text").textContent();
+    async getOrderIdDetailsPage() {
+        // Wait for the page to load fully
+        await this.page.waitForLoadState('load');
+
+        // Wait for the element to be available
+        await this.page.waitForSelector("[class*='-col-text']", { timeout: 60000 });
+
+        // Attempt to get the order ID
+        const orderId = await this.page.locator("[class*='-col-text']").first().textContent();
         return orderId?.trim() || "";
     }
 }

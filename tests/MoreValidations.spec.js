@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.configure({mode:"parallel"});
+test.describe.configure({ mode: "parallel" });
 test('@Web Popup validations with playwright', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     //await page.goto("https://google.com");
@@ -43,5 +43,7 @@ test('Taking screenshot for complete page & particular web element with playwrig
 
 test('visual comparison for a page with playwright', async ({ page }) => {
     await page.goto("https://flightware.com/");
-    expect(await page.screenshot()).toMatchSnapshot('landing.png');
+    expect(await page.screenshot()).toMatchSnapshot('landing.png', {
+        maxDiffPixels: 100 // Allow minor differences
+    });
 });

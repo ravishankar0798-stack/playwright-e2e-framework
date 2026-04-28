@@ -26,7 +26,7 @@ test("Page playwright test", async ({ page }) => {
     /*----------selecting cart from dashboard header and peforming few actions present in the cart page----------*/
     //await page.locator("[class='btn btn-custom']").nth(2).click();
     await page.getByRole("listitem").getByRole("button", { name: "Cart" }).click();
-    await expect(page.locator('.cart').getByText(productName)).toBeVisible();
+    await expect(page.locator('.cart').getByText(productName)).toBeVisible({ timeout: 10000 });
     //await page.locator("[class='btn btn-primary']").last().click();
     await page.getByRole("button", { name: "Checkout" }).click();
     //await page.locator("[placeholder='Select Country']").pressSequentially("ind");

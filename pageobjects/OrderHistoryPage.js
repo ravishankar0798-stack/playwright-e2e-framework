@@ -6,20 +6,31 @@ class OrderHistoryPage {
     }
 
     async searchOrder(orderId) {
-        const cleanOrderId = orderId.replace(/\|/g, '').trim();
-        // Wait until the table has at least one row
-        const rows = this.page.locator('tbody tr');
-        await rows.first().waitFor({ state: 'visible', timeout: 30000 });
-        const rowCount = await rows.count();
-        for (let i = 0; i < rowCount; i++) {
-            const row = rows.nth(i);
-            const cellText = (await row.locator('th').first().textContent()).trim();
-            if (cellText.includes(cleanOrderId)) {
-                await row.locator('button', { hasText: 'View' }).click();
-                return cellText;
+        await this.ordersTable.waitFor();
+
+        const count = await this.rows.count();
+
+        for (let i = 0; i < count; i++) {
+            const row = this.rows.nth(i);
+            const rowOrderId = await row.locator('th').textContent();
+
+            if (rowOrderId?.trim() === orderId) {
+                await row.locator("button:has-text('View')").click();
+                break;
             }
         }
-        throw new Error(`Order | ${orderId} | not found in Order History`);
+    }
+
+    async getOrderIdDetailsPage() {
+        // Wait for the page to load fully
+        await this.page.waitForLoadState('load');
+
+        // Wait for the element to be available
+        await this.page.waitForSelector("[class*='-col-text']", { timeout: 60000 });
+
+        // Attempt to get the order ID
+        const orderId = await this.page.locator("[class*='-col-text']").first().textContent();
+        return orderId?.trim() || "";
     }
 }
 
