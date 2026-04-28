@@ -60,5 +60,4 @@ test("Page playwright test", async ({ page }) => {
         has: page.locator('th', { hasText: cleanOrderId })
     });
     await row.locator('button').first().click();
-await page.close();
 });

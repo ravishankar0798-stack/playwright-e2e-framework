@@ -24,5 +24,4 @@ test('@Web Calendar validation', async ({ page }) => {
         inputs.nth(2).inputValue()
     ]);
     expect(actualList).toEqual(expectedList);
-    await page.close();
 });

@@ -25,7 +25,6 @@ test('@Web Browser context playwright test', async ({ browser }) => {
     console.log(await cardTitles.nth(1).textContent());
     const allCardTitles = await cardTitles.allTextContents();
     console.log(allCardTitles);
-    await page.close();
 });
 
 test("handling Basic UI controls", async ({ page }) => {
@@ -56,7 +55,6 @@ test("handling Basic UI controls", async ({ page }) => {
     /*------------handling blinking text in web page-----------------*/
     const documentLink = page.locator("[href*='documents-request']");
     await expect(documentLink).toHaveAttribute("class", "blinkingText");
-    await page.close();
 });
 
 test("handling child window", async ({ page }) => {

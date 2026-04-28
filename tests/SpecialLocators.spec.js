@@ -10,5 +10,4 @@ await page.getByRole("button",{name:"submit"}).click(); //"getByRole" locator ca
 await page.getByText("Success! The Form has been submitted successfully!.").isVisible(); //"getByText" locator allows locating elements that contain given text
 await page.getByRole("link",{name:"Shop"}).click();
 await page.locator("app-card").filter({hasText:"Nokia Edge"}).getByRole("button",{name:"Add "}).click(); //chaining locator
-await page.close();
 });

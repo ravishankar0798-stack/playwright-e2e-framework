@@ -30,7 +30,6 @@ test('@Web Popup validations with playwright', async ({ page }) => {
     const actualTextCheck = await framePage.locator(".text h2").textContent();
     console.log(actualTextCheck);
     expect(actualTextCheck).toContain('Join 13,522 Happy Subscibers!');
-    await page.close();
 });
 
 test('Taking screenshot for complete page & particular web element with playwright', async ({ page }) => {
