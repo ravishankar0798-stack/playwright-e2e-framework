@@ -1,0 +1,8 @@
+[ 'sno', 'fruit_name', 'color', 'price', 'season' ]
+[ 1, 'Mango', 'Yellow', 299, 'Summer' ]
+[ 2, 'Sapota 64fygt', 'Red', 345, 'Winter' ]
+[ 3, 'Papaya', 'Orange', 187, 'Spring' ]
+[ 4, 'Banana', 'Yellow', 69, 'All' ]
+[ 5, 'Kivi', 'Green', 399, 'Winter' ]
+[ 6, 'Orange', 'Orange', 199, 'Summer' ]
+Papaya found at row: 4

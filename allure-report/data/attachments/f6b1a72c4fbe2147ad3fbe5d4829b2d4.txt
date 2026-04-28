@@ -1,0 +1,31 @@
+=== LOGIN API DEBUG ===
+Status: 200
+Response: {
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWQzYTM2OWY4NmJhNTFhNjU0YjdiMjUiLCJ1c2VyRW1haWwiOiJyYXZpc2hhbmthcjA3OThAZ21haWwuY29tIiwidXNlck1vYmlsZSI6NzcwMjc2NzI0MSwidXNlclJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc3NjY4MjI5NSwiZXhwIjoxODA4MjM5ODk1fQ.R25xxiMm2PWSH1VyY5bhpYTn1HXYpfT5-4VcsxQLnac',
+  userId: '69d3a369f86ba51a654b7b25',
+  message: 'Login Successfully'
+}
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWQzYTM2OWY4NmJhNTFhNjU0YjdiMjUiLCJ1c2VyRW1haWwiOiJyYXZpc2hhbmthcjA3OThAZ21haWwuY29tIiwidXNlck1vYmlsZSI6NzcwMjc2NzI0MSwidXNlclJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc3NjY4MjI5NSwiZXhwIjoxODA4MjM5ODk1fQ.R25xxiMm2PWSH1VyY5bhpYTn1HXYpfT5-4VcsxQLnac
+Token in beforeAll: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OWQzYTM2OWY4NmJhNTFhNjU0YjdiMjUiLCJ1c2VyRW1haWwiOiJyYXZpc2hhbmthcjA3OThAZ21haWwuY29tIiwidXNlck1vYmlsZSI6NzcwMjc2NzI0MSwidXNlclJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc3NjY4MjI5NSwiZXhwIjoxODA4MjM5ODk1fQ.R25xxiMm2PWSH1VyY5bhpYTn1HXYpfT5-4VcsxQLnac
+=== ORDER API DEBUG ===
+Status: 201
+Response: {
+  orders: [ '69e60537f86ba51a6575af8a' ],
+  productOrderId: [ '6960eac0c941646b7a8b3e68' ],
+  message: 'Order Placed Successfully'
+}
+Order ID: 69e60537f86ba51a6575af8a
+OrderId in beforeAll: 69e60537f86ba51a6575af8a
+Page Title: Let's Shop
+[
+  '69e60537f86ba51a6575af8a',
+  '69e6049cf86ba51a6575adcf',
+  '69e60489f86ba51a6575adae',
+  '69e6047ef86ba51a6575ad50',
+  '69e6043af86ba51a6575ac59',
+  '69e60413f86ba51a6575abdd',
+  '69e603eef86ba51a6575ab07'
+]
+Searching for Order ID: 69e60537f86ba51a6575af8a
+Matching Row Count: 1
+Clicked on order details successfully
