@@ -28,6 +28,8 @@ export class OrderHistoryPage {
     }
 
     async getOrderIdDetailsPage(): Promise<string> {
+        // Wait for the element to be visible before getting text
+        await this.page.locator(".col-text").waitFor({ state: 'visible', timeout: 10000 });
         const orderId = await this.page.locator(".col-text").textContent();
         return orderId?.trim() || "";
     }

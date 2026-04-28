@@ -22,12 +22,12 @@ test.describe("Data-driven tests for checkout", () => {
             await poManager.checkoutPage.selectCountry("ind");
             await poManager.checkoutPage.submitOrder();
 
-           const orderId = await poManager.checkoutPage.getOrderId();
+            const orderId = await poManager.checkoutPage.getOrderId();
 
             await poManager.dashboardPage.navigateToOrders();
 
             await poManager.orderHistoryPage.searchOrder(orderId);
-            expect(orderId.includes(await orderHistoryPage.getOrderId())).toBeTruthy();
+            expect(orderId.includes(await poManager.orderHistoryPage.getOrderIdDetailsPage())).toBeTruthy();
         });
     }
 });

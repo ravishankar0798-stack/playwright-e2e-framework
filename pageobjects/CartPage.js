@@ -7,7 +7,8 @@ class CartPage {
     }
 
     async verifyProduct(productName) {
-        await expect(this.page.locator('.cartSection').filter({ hasText: productName })).toBeVisible();
+        await this.page.waitForLoadState('networkidle'); // Wait for page to fully load
+        await expect(this.page.locator('.cartSection').filter({ hasText: productName })).toBeVisible({ timeout: 10000 });
     }
 
     async goToCheckout() {
