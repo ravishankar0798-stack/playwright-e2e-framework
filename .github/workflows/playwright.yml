@@ -33,23 +33,24 @@ jobs:
       # ---------------- SMOKE (PR PIPELINE) ----------------
       - name: Run Smoke Tests
         if: github.event_name == 'pull_request'
-        run: npx cucumber-js --tags "@smoke" --parallel 2
+        run: npx cucumber-js --tags "@smoke" --parallel 2 --format json:reports/cucumber-smoke.json
 
       # ---------------- REGRESSION (MAIN + NIGHTLY) ----------------
       - name: Run Regression Tests
         if: github.event_name != 'pull_request'
-        run: npx cucumber-js --tags "@regression" --parallel 2
+        run: npx cucumber-js --tags "@regression" --parallel 2 --format json:reports/cucumber-regression.json
 
       # ---------------- RETRY FAILED TESTS ----------------
       - name: Rerun Failed Tests
         if: failure()
-        run: npx cucumber-js @rerun.txt
+        run: npx cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json
 
-      # ---------------- REPORT GENERATION ----------------
-      - name: Generate HTML Report
+      # ---------------- ALLURE REPORT GENERATION ----------------
+      - name: Generate Allure Report
         if: always()
         run: |
-          npx cucumber-html-reporter
+          npx allure generate reports --clean -o allure-report
+          npx allure open allure-report || echo "Allure report generated, skipping open in CI"
 
       # ---------------- ARTIFACTS ----------------
       - name: Upload Reports
@@ -59,6 +60,5 @@ jobs:
           name: automation-report
           path: |
             reports/
-            playwright-report/
-            cucumber-report.json
+            allure-report/
           retention-days: 30

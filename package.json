@@ -2,20 +2,19 @@
   "name": "playwright-tests",
   "version": "1.0.0",
   "scripts": {
-    "regression": "npx playwright test",
-    "test": "cucumber-js --require-module ts-node/register --format json:reports/cucumber.json",
-    "rerun": "cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json",
-    "report": "npx allure generate reports --clean -o allure-report",
-    "open-report": "npx allure open allure-report"
+  "test": "cucumber-js --require-module ts-node/register --format json:reports/cucumber.json",
+  "rerun": "cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json",
+  "report": "npx allure generate reports --clean -o allure-report",
+  "open-report": "npx allure open allure-report"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.8.2",
     "@playwright/test": "^1.59.1",
     "@types/dotenv": "^6.1.1",
     "@types/node": "^25.6.0",
-    "allure-playwright": "^3.7.1",
-    "typescript": "^6.0.3",
-    "ts-node": "^10.9.2"
+    "allure-playwright": "^3.7.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
