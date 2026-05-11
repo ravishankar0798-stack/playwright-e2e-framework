@@ -51,6 +51,7 @@ jobs:
         run: |
           npx allure generate reports --clean -o allure-report
           npx allure open allure-report || echo "Allure report generated, skipping open in CI"
+          npm install --save-dev allure-commandline
 
       # ---------------- ARTIFACTS ----------------
       - name: Upload Reports
