@@ -5,6 +5,11 @@ module.exports = {
       "tests/step-definitions/**/*.ts"
     ],
     requireModule: ["ts-node/register"],
-    format: ["progress"]
+     format: [
+      "progress",
+      "json:reports/cucumber-report.json",
+      "rerun:@rerun.txt"
+    ],
+    parallel: 2
   }
 };

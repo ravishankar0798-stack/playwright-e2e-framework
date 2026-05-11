@@ -1,27 +1,64 @@
-name: Playwright Tests
+name: Playwright Cucumber Framework
+
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  schedule:
+    - cron: "0 2 * * *"   # nightly run
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Single Feature File
-      run: npx cucumber-js tests/features/ecommerce.feature
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      # ---------------- SMOKE (PR PIPELINE) ----------------
+      - name: Run Smoke Tests
+        if: github.event_name == 'pull_request'
+        run: npx cucumber-js --tags "@smoke" --parallel 2
+
+      # ---------------- REGRESSION (MAIN + NIGHTLY) ----------------
+      - name: Run Regression Tests
+        if: github.event_name != 'pull_request'
+        run: npx cucumber-js --tags "@regression" --parallel 2
+
+      # ---------------- RETRY FAILED TESTS ----------------
+      - name: Rerun Failed Tests
+        if: failure()
+        run: npx cucumber-js @rerun.txt
+
+      # ---------------- REPORT GENERATION ----------------
+      - name: Generate HTML Report
+        if: always()
+        run: |
+          npx cucumber-html-reporter
+
+      # ---------------- ARTIFACTS ----------------
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-report
+          path: |
+            reports/
+            playwright-report/
+            cucumber-report.json
+          retention-days: 30
