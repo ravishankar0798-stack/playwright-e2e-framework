@@ -1,8 +1,7 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const { chromium } = require('@playwright/test');
-const { expect } = require('@playwright/test');
-const { setDefaultTimeout } = require('@cucumber/cucumber');
-setDefaultTimeout(60 * 1000); // 60 second
+import { Given, When, Then, setDefaultTimeout } from '@cucumber/cucumber';
+import { expect } from '@playwright/test';
+
+setDefaultTimeout(60 * 1000);
 
 Given('user is on the Ecommerce login page', async function () {
     await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/");
