@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "regression": "npx playwright test",
-    "test": "cucumber-js --require-module ts-node/register",
-    "report": "node reports/generateReport.js"
+    "test": "cucumber-js --require-module ts-node/register --format json:reports/cucumber.json",
+    "rerun": "cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json",
+    "report": "npx allure generate reports --clean -o allure-report",
+    "open-report": "npx allure open allure-report"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.8.2",
@@ -12,13 +14,12 @@
     "@types/dotenv": "^6.1.1",
     "@types/node": "^25.6.0",
     "allure-playwright": "^3.7.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
-    "cucumber-html-reporter": "^7.2.0",
     "dotenv": "^17.4.2",
     "exceljs": "^4.4.0",
-    "ts-node": "^10.9.2",
     "winston": "^3.19.0",
     "xlsx": "^0.18.5"
   }
