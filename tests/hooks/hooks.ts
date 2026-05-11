@@ -4,7 +4,7 @@ import { chromium } from '@playwright/test';
 
 Before(async function () {
     const browser = await chromium.launch({
-        headless: false,
+        headless: true,
         slowMo: 200,
         args: ['--start-maximized']
     });
