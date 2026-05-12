@@ -4,6 +4,7 @@ import { DashboardPage } from './DashboardPage';
 import { CartPage } from './CartPage';
 import { CheckoutPage } from './CheckoutPage';
 import { OrderHistoryPage } from './OrderHistoryPage';
+import { ProductDetailsPage } from './ProductDetailsPage';
 
 export class POManager {
     readonly loginPage: LoginPage;
@@ -11,6 +12,7 @@ export class POManager {
     readonly cartPage: CartPage;
     readonly checkoutPage: CheckoutPage;
     readonly orderHistoryPage: OrderHistoryPage;
+    readonly productDetailsPage: ProductDetailsPage;
 
     constructor(page: Page) {
         this.loginPage = new LoginPage(page);
@@ -18,5 +20,6 @@ export class POManager {
         this.cartPage = new CartPage(page);
         this.checkoutPage = new CheckoutPage(page);
         this.orderHistoryPage = new OrderHistoryPage(page);
+        this.productDetailsPage = new ProductDetailsPage(page);
     }
 }

@@ -1,28 +1,40 @@
 import { Before, After } from "@cucumber/cucumber";
-import { POManager } from '../../pages_ts/POManager';
-import { chromium } from '@playwright/test';
+import { chromium, Browser, BrowserContext, Page } from "@playwright/test";
+import { POManager } from "../../pages_ts/POManager";
+
+let browser: Browser;
 
 Before(async function () {
-    const browser = await chromium.launch({
-        headless: true,
-        slowMo: 200,
-        args: ['--start-maximized']
+
+    // Create browser only once per worker (safe in parallel)
+    if (!browser) {
+        browser = await chromium.launch({
+            headless: true,
+            slowMo: 200,
+            args: ['--start-maximized']
+        });
+    }
+
+    const context: BrowserContext = await browser.newContext({
+        viewport: null
     });
 
-    this.browser = browser;
+    const page: Page = await context.newPage();
 
-    const context = await browser.newContext({ viewport: null });
-    this.page = await context.newPage();
+    this.context = context;
+    this.page = page;
 
-    this.poManager = new POManager(this.page);
+    this.poManager = new POManager(page);
 });
 
 After(async function ({ result }) {
-    if (result?.status === 'FAILED') {
+
+    if (result?.status === "FAILED") {
         await this.page.screenshot({
             path: `reports/failure-${Date.now()}.png`
         });
     }
 
-    await this.browser.close();
+    await this.page.close();
+    await this.context.close();
 });

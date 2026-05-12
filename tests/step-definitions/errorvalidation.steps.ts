@@ -3,7 +3,7 @@ import { expect } from '@playwright/test';
 
 setDefaultTimeout(60 * 1000);
 
-Given('user is on the Ecommerce login page', async function () {
+Given('user is on the Ecommerce2 login page', async function () {
     await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const title = await this.page.title();
     console.log(title);

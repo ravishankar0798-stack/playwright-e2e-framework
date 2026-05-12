@@ -1,0 +1,162 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "ecommerce-validations;1::-placing-the-order-by-clicking-on-add-to-cart-button-from-dashboard-page",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "1:: Placing the order by clicking on Add to Cart button from dashboard page",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3045641299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "user is on the Ecommerce login page",
+            "match": {
+              "location": "tests\\step-definitions\\common.steps.ts:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2007201799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "user logs in with valid credentials",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 918140500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "Add \"zara coat 3\" to Cart by clicking on Add to Cart button from dashboard page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 606218199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "Click on Cart button from dashboard page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1862935900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "Verify \"zara coat 3\" is displayed in the Cart page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 798704799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "Enter valid details and Place the order",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1458773500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "Verify order is present in the Order History page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 579221700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "Click on Home button from dashboard page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 295115700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "Click on Sign Out button from dashboard page",
+            "match": {
+              "location": "tests\\step-definitions\\ecommerce.steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 305772699
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 135627100
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@regression",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "ecommerce-validations",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Ecommerce validations",
+    "tags": [],
+    "uri": "tests\\features\\ecommerce.feature"
+  }
+]

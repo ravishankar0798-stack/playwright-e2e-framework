@@ -11,13 +11,13 @@ export class CartPage extends BasePage {
     private cartSection = ".cartSection";
 
 
-    async verifyProduct(productName: string) {
+    async verifyProductFromCart(productName: string) {
         logger.info(`Verifying product in cart: ${productName}`);
         await this.page.waitForLoadState('networkidle');
         await this.expectTextInElementVisible(this.cartSection, productName, 10000);
     }
 
-    async goToCheckout() {
+    async goToCheckoutFromCart() {
         logger.info("Navigating to Checkout page...");
         await this.click(this.checkoutBtn);
     }

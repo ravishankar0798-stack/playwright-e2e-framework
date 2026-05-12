@@ -12,7 +12,7 @@ export class DashboardPage extends BasePage {
     private allProductCardsText = ".card-body b";
     private ordersButton = "button[routerlink*='myorders']";
 
-    async searchProductAddCart(productName: string) {
+    async clickOnAddToCartFromDashboard(productName: string) {
         logger.info(`Waiting for product cards to load...`);
         await this.waitForFirst(this.allProductCards);
         const allProductTitles = await this.page.locator(this.allProductCardsText).allTextContents();
@@ -25,7 +25,7 @@ export class DashboardPage extends BasePage {
         await productLocator.click();
     }
 
-    async navigateToCart() {
+    async clickOnCart() {
         /*------------------clicking on the cart--------------------------*/
         logger.info("Navigating to Cart page...");
         await this.click(this.cart);
@@ -36,6 +36,31 @@ export class DashboardPage extends BasePage {
         logger.info("Navigating to Orders page...");
         await this.click(this.ordersButton);
         await this.waitForURL("/myorders");
+    }
+
+    async clickOnViewFromDashboard(productName: string) {
+        logger.info("Waiting for dashboard to load...");
+        await this.waitForFirst(this.allProductCards);
+        const allProductTitles = await this.page.locator(this.allProductCardsText).allTextContents();
+        logger.info(`Available products: ${allProductTitles.join(", ")}`);
+        // Find the product card with the matching product name
+        const productLocator = this.page.locator(this.allProductCards, { hasText: productName })
+            .locator('button:has-text("View")');
+
+        logger.info(`Clicking on view button for the product "${productName}"`);
+        await productLocator.click();
+    }
+
+    async clickOnSignOut() {
+        logger.info("Signing out...");
+        await this.clickByText("Sign Out");
+        await this.waitForURL("/login");
+    }
+
+    async clickOnHome() {
+        logger.info("Navigating to Home page...");
+        await this.clickByText("Home");
+        await this.waitForURL("/dashboard");
     }
 
 }

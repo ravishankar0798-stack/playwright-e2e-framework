@@ -13,7 +13,7 @@ export class CheckoutPage extends BasePage {
     private results = ".ta-results button";
     private orderIdText = ".em-spacer-1 .ng-star-inserted";
 
-    async selectCountry(country: string) {
+    async selectCountryFromCheckout(country: string) {
         logger.info(`Selecting country: ${country}`);
         await this.typeSlowly(this.countryInput, country);
         await this.waitForFirst(this.results);
@@ -28,7 +28,7 @@ export class CheckoutPage extends BasePage {
         }
     }
 
-    async submitOrder() {
+    async submitOrderFromCheckout() {
         logger.info("Submitting order...");
         await this.click(this.submit);
     }
@@ -36,6 +36,6 @@ export class CheckoutPage extends BasePage {
     async getOrderId(): Promise<string> {
         logger.info("Fetching order ID...");
         const orderId = await this.getText(this.orderIdText);
-        return orderId.trim();
+        return orderId.replace(/\|/g, "").trim();
     }
 }
