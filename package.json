@@ -2,10 +2,11 @@
   "name": "playwright-tests",
   "version": "1.0.0",
   "scripts": {
-    "test": "cucumber-js --require-module ts-node/register --format json:reports/cucumber.json",
-    "rerun": "cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json",
-    "report": "npx allure generate reports --clean -o allure-report",
-    "open-report": "npx allure open allure-report"
+    "test": "cucumber-js",
+    "regression": "cucumber-js --tags '@regression'",
+    "smoke": "cucumber-js --tags '@smoke'",
+    "rerun": "cucumber-js @rerun.txt",
+    "report": "allure generate reports --clean -o allure-report"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^12.8.2",

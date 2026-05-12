@@ -2,11 +2,10 @@ name: Playwright Cucumber Framework
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
+
   pull_request:
-    branches: [ main, master ]
-  schedule:
-    - cron: "0 2 * * *"   # nightly run
+    branches: [main, master]
 
 jobs:
   test:
@@ -16,8 +15,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -30,30 +27,28 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # ---------------- SMOKE (PR PIPELINE) ----------------
+      - name: Debug Features
+        run: |
+          find . -name "*.feature"
+          grep -R "@regression" tests/features || true
+          grep -R "@smoke" tests/features || true
+
       - name: Run Smoke Tests
         if: github.event_name == 'pull_request'
-        run: npx cucumber-js --tags "@smoke" --parallel 2 --format json:reports/cucumber-smoke.json
+        run: npm run smoke
 
-      # ---------------- REGRESSION (MAIN + NIGHTLY) ----------------
       - name: Run Regression Tests
         if: github.event_name != 'pull_request'
-        run: npx cucumber-js --tags "@regression" --parallel 2 --format json:reports/cucumber-regression.json
+        run: npm run regression
 
-      # ---------------- RETRY FAILED TESTS ----------------
       - name: Rerun Failed Tests
         if: failure()
-        run: npx cucumber-js @rerun.txt --format json:reports/cucumber-rerun.json
+        run: npm run rerun
 
-      # ---------------- ALLURE REPORT GENERATION ----------------
       - name: Generate Allure Report
         if: always()
-        run: |
-          npx allure generate reports --clean -o allure-report
-          npx allure open allure-report || echo "Allure report generated, skipping open in CI"
-          npm install --save-dev allure-commandline
+        run: npm run report
 
-      # ---------------- ARTIFACTS ----------------
       - name: Upload Reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,4 +57,3 @@ jobs:
           path: |
             reports/
             allure-report/
-          retention-days: 30
