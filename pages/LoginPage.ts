@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { config } from "../utils_ts/config";
-import { logger } from "../utils_ts/logger";
+import { config } from "../utils/config";
+import { logger } from "../utils/logger";
 
 export class LoginPage extends BasePage {
   constructor(page: Page) {

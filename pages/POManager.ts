@@ -15,6 +15,7 @@ export class POManager {
     readonly productDetailsPage: ProductDetailsPage;
 
     constructor(page: Page) {
+        // Create all page object instances 
         this.loginPage = new LoginPage(page);
         this.dashboardPage = new DashboardPage(page);
         this.cartPage = new CartPage(page);

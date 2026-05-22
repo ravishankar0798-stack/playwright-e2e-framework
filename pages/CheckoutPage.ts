@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { logger } from "../utils_ts/logger";
+import { logger } from "../utils/logger";
 
 export class CheckoutPage extends BasePage {
 

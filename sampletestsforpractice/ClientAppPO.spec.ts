@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { POManager } from '../pageobjects_ts/POManager';
+import { POManager } from '../pages/POManager';
 import testData from '../test-data/placeorderTestData.json';
 
 test.describe("Data-driven tests for checkout", () => {
